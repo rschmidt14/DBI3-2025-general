@@ -1,6 +1,6 @@
-drop table if exists lv;
-drop table if exists s;
-drop table if exists l;
+drop table if exists lv cascade;
+drop table if exists s cascade;
+drop table if exists l cascade;
 
 create table LV (
   id int,
@@ -42,4 +42,20 @@ insert into s values
 (30, 'Max', 16, true);
 
 select * from l;
+-- pi id (L)
+select lid from l;
+select lid, lname from l;
+select alter from l;
+select distinct alter from l;
 
+-- sigma alter<0 (L)
+select * from l where alter < 30;
+
+-- pi lname ( sigma alter<30 (L) )
+select lname from l where alter < 30;
+
+-- column "alter" does not exist
+select * from (select lname from l) where alter < 30;
+
+select lname, alter from l;
+select * from (select lname, alter from l) where alter < 30;
