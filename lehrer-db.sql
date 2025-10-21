@@ -11,14 +11,14 @@ create table LV (
 
 create table L (
   lid int,
-  lname text,
+  name text,
   ALTER int,
   pendler bool  
 );
 
 create table S (
   sid int,
-  sname text,
+  name text,
   alter int,
   pendler bool
 );
@@ -59,3 +59,39 @@ select * from (select lname from l) where alter < 30;
 
 select lname, alter from l;
 select * from (select lname, alter from l) where alter < 30;
+
+-- mengenvereinigung 
+select * from l;
+select * from s;
+
+select * from l 
+union
+select * from s;
+
+select * from l 
+union
+select * from lv;
+
+-- die namen aller lehrer und schüler
+-- π name (l) ∪ π name (s)
+select name from l
+union
+select name from s;
+
+-- π name (l ∪ s)
+select distinct name from (select * from l union select * from s);
+
+-- die namen aller lehrer und schüler, die pendler sind
+select name from l where pendler = true
+union
+select name from s where pendler = true;
+
+select * from (select * from l union select * from s) as ls;
+select distinct name from (select * from l union select * from s) as ls where pendler = true;
+
+-- mondial
+-- die namen und flächen aller flüsse  (die länger als 300 km) und seen (die größer als 2000 km²) sind
+-- in sql und rel. algebra als hü bis zum nächsten mal
+
+select name, area from lake ;
+select * from river;
