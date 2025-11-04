@@ -118,5 +118,38 @@ select * from l
 except
 select * from l where pendler = true;
 
+----X-- kreuzprodukt
+
+select * from l;
+delete from l;
+alter table l rename column name to lname;
+alter table s rename column name to sname;
+
+-- alle kombinationen von lehrernamen und schülernamen
+--pi name(l) x pi name(s) --> 12 tupel
+
+-- 4 tupel
+select count(*) from l;
+-- 3 tupel
+select count(*) from s;
+
+select lname from l;
+select sname from s;
+--- pi snamen lname(L x S) 
+-- hier konflikt in relationer algebrea, weil gleiche attribute zb alter, pendler, id 
+select lname, sname from l, s;
+
+--funktioniert in sql
+select * from l,s;
+-- allerdings hier nihct
+--alter ist nicht eindeutig leher alter und schüler alter ---> gleiche attributsname
+select alter from l, s;
+
+--pi lname(l) x pi sname(s)
+select * from
+(select lname from l),
+(select sname from s);
+
+
 
 
