@@ -95,4 +95,4 @@ select distinct name from (select * from l union select * from s) as ls where pe
 
 select name, area from lake ;
 select * from river;
-
+--t
