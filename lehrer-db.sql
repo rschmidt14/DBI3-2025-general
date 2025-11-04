@@ -86,8 +86,35 @@ select * from l
 except
 select * from l where pendler = true;
 
+select * from l;
 
---
+alter table l rename column name to lname;
+alter table s rename column name to sname;
+
+-- alle kombinationen von lehrernamen und schülernamen
+-- π name (L) x π name (S)
+-- 4 
+select count(*) from l;
+-- 3
+select count(*) from s;
+
+--  π sname, sname (L x S)
+-- hier konflikt in rel. algebra, weil gleiche attribute, z.B. alter, pendler, id
+select lname, sname from l,s;
+
+-- funktioniert in sql
+select * from l,s;
+-- allerdings hier nicht mehr
+-- alter ist nicht eindeutig
+select alter from l,s;
+
+-- π sname (L) x π lname (S)
+select * from 
+(select lname from l),
+(select sname from s);
+
+-- todo alias und punktnotation
+
 
 
 
