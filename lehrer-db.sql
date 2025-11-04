@@ -95,3 +95,28 @@ select distinct name from (select * from l union select * from s) as ls where pe
 
 select name, area from lake ;
 select * from river;
+
+-- alle lehrer und alle schüler
+-- L ∪ S
+select * from l
+union 
+select * from s;
+
+-- alle namen von schülern und lehrern --> 6 Tupel
+-- pi name (L) union pi name (s)
+select name from l
+union
+select name from s;
+
+--alle leherer namen ohne den namen von schülern --> 3 tupel
+select name from l
+except
+select name from s;
+
+--alle lehrer ohne die pendler mit mengendifferenz
+select * from l 
+except
+select * from l where pendler = true;
+
+
+
