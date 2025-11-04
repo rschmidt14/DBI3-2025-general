@@ -59,3 +59,35 @@ select * from (select lname from l) where alter < 30;
 
 select lname, alter from l;
 select * from (select lname, alter from l) where alter < 30;
+
+-- alle lehrer und alle schüler -> 7 tupel
+-- L ∪ S
+select * from l 
+union
+select * from s;
+
+alter table l rename column lname to name;
+alter table s rename column sname to name;
+
+-- alle namen von lehrern und schülern -> 6 tupel
+-- π name (L) ∪ π name (S)
+select name from l
+union 
+select name from s;
+
+-- alle namen von lehrern, die keine namen von schülern sind -> 3 tupel
+-- π name (L) ∪ π name (S)
+select name from l
+except 
+select name from s;
+
+-- alle lehrer ohne die pendler mit mengendifferenz
+select * from l 
+except
+select * from l where pendler = true;
+
+
+--
+
+
+
