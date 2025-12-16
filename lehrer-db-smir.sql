@@ -368,6 +368,6 @@ except
 select country from ismember) as nm
 where country.code = nm.code;
 
-
+-- TODO
 -- Die Namen aller Länder, die in keiner Organisation Mitglied sind
 -- In welchen Organisationen ist Österreich Mitglied? Lsg. mit Join und Unterabfrage
