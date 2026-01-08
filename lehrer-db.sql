@@ -304,6 +304,44 @@ select * from country where code = (
 	select country from city where name = 'Adamstown'
 );
 
-----------lösung mit kreutzprodukt, nur name und population vom country
+----------lösung mit kreuzprodukt, nur name und population vom country
 select co.name, co.population from city ci, country co
 where ci.country = co.code and ci.name = 'Adamstown';
+
+--- Neue Version 2 mit FK
+
+drop table if exists lv cascade;
+drop table if exists s cascade;
+drop table if exists l cascade;
+
+create table L (
+  id int primary key,
+  name text,
+  ALTER int,
+  pendler bool  
+);
+
+create table LV (
+  id int references l,
+  fach char,
+  stunden int,
+  jahr int,
+  lid int,
+  primary key(id, fach, jahr),
+  foreign key(lid) references L
+);
+
+insert into l values
+(1, 'Max', 25, true),
+(2, 'Fritz', 31, false),
+(3, 'Gabi', 31, true),
+(4, 'Moritz', 33, false);
+
+insert into lv values 
+(1, 'D', 4, 2022, 1),
+(1, 'E', 4, 2022, 1),
+(2, 'E', 6, 2022, 2),
+(3, 'D', 2, 2022, 3);
+
+select l.name, lv.fach, lv.stunden from l join lv on l.id = lv.lid where lv.fach = 'E';
+
