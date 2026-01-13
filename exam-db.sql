@@ -82,3 +82,21 @@ select firstname, lastname from teacher
 except
 (select firstname, lastname from teacher where -1 = any (
 	select grade from exam where teacher.account =exam.teacher));
+--mit all 
+select firstname, lastname from teacher where -1 < all(
+	select grade from exam where teacher.account =exam.teacher);
+
+--ermittlen sie alle lehrere die mehre las eine arbiet betreuen
+select * from teacher;
+select count(*) from exam;
+select count(*) from exam where teacher = 'a001';
+--
+select firstname, lastname from teacher where 2 < (
+	select count(*)from exam e where e.teacher = teacher.account);  
+--ermittlen sie alle lehrere die mehre las eine arbiet betreuen
+select firstname, lastname from teacher where 2 < (
+	select count(*)from exam e where e.teacher = teacher.account and e.grade >0);
+
+
+
+

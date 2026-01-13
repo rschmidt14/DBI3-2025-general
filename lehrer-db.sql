@@ -307,3 +307,20 @@ select * from country where code = (
 ----------lösung mit kreutzprodukt, nur name und population vom country
 select co.name, co.population from city ci, country co
 where ci.country = co.code and ci.name = 'Adamstown';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
