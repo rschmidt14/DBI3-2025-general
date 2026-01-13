@@ -37,3 +37,8 @@ insert into lv values
 (2, 'E', 6, 2022),
 (3, 'D', 2, 2022);
 
+insert into s values
+(10, 'Susi', 15, false, 1),
+(20, 'Sepp', 16, false, 3),
+(30, 'Max', 16, true, 3);
+
