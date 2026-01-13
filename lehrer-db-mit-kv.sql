@@ -2,29 +2,29 @@ drop table if exists lv cascade;
 drop table if exists s cascade;
 drop table if exists l cascade;
 
-create table LV (
-  id int,
-  fach char,
-  stunden int,
-  jahr int
-);
-
 create table L (
-  id int,
+  id int primary key,
   name text,
   ALTER int,
   pendler bool  
 );
 
+create table LV (
+  id int references L,
+  fach char,
+  stunden int,
+  jahr int,
+  primary key (id, fach, jahr)
+);
+
 create table S (
-  sid int,
+  sid int primary key,
   name text,
   alter int,
   pendler bool,
-  kv int
+  kv int references L
 );
 
-truncate l;
 insert into l values
 (1, 'Max', 25, true),
 (2, 'Fritz', 31, false),
@@ -41,4 +41,3 @@ insert into s values
 (10, 'Susi', 15, false, 1),
 (20, 'Sepp', 16, false, 3),
 (30, 'Max', 16, true, 3);
-
