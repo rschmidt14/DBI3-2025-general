@@ -37,15 +37,27 @@ insert into lv values
 (2, 'E', 6, 2022),
 (3, 'D', 2, 2022);
 
+insert into lv values 
+(1, 'D', 7, 2023),
+(1, 'E', 1, 2023),
+(2, 'E', 3, 2023),
+(3, 'D', 8, 2023),
+(4, 'M', 3, 2023);
+
+
 insert into s values
 (10, 'Susi', 15, false, 1),
 (20, 'Sepp', 16, false, 3),
 (30, 'Max', 16, true, 3);
 
 select * from lv;
-select * from l;
-select * from l join lv on l.id = lv.id;
-select * from l inner join lv on l.id = lv.id;
 
--- outer join
-select * from l left outer join lv on l.id = lv.id;
+-- Gsum(h) (LV)
+select sum(stunden) from lv;
+select sum(stunden), avg(stunden) from lv;
+--  Gsum(h) (σjahr=2023 (LV))
+select sum(stunden) from lv where jahr = 2023;
+
+
+
+
